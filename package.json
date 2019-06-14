@@ -1,0 +1,28 @@
+{
+  "name": "mockjs-server-cli",
+  "version": "1.0.0",
+  "description": "An express server that relies on mockjs to simulate the CLI of interface data",
+  "main": "index.js",
+  "bin": {
+    "mockjs-server": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronffy/mockjs-server-cli.git"
+  },
+  "keywords": [
+    "mock",
+    "mockjs",
+    "server",
+    "express"
+  ],
+  "author": "ronffy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ronffy/mockjs-server-cli/issues"
+  },
+  "homepage": "https://github.com/ronffy/mockjs-server-cli#readme"
+}
