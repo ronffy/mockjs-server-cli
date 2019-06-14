@@ -8,7 +8,7 @@ require('../helpers/outCommander');
 const METHODS = ['PUT', 'GET', 'POST', 'DELETE', 'OPTIONS'];
 const app = express();
 let port = '8888';
-let config = 'mock.config.js';
+let config = './mock.config.js';
 
 process.argv.forEach(val => {
   switch (true) {
