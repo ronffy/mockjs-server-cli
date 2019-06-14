@@ -1,4 +1,6 @@
 # mockjs-server-cli
+[![npm](https://img.shields.io/npm/v/mockjs-server-cli.svg)](https://www.npmjs.com/package/mockjs-server-cli)
+
 An express server that relies on mockjs to simulate the CLI of interface data
 
 [View examples](https://github.com/ronffy/mockjs-server-cli/tree/master/exemple)
