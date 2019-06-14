@@ -1,6 +1,6 @@
 {
   "name": "mockjs-server-cli",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "An express server that relies on mockjs to simulate the CLI of interface data",
   "main": "index.js",
   "bin": {
