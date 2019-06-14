@@ -12,7 +12,7 @@ npm install
 `
 npm run mock
 `
-listen on http:localhost:8888
+listen on http//:localhost:8888
 
 ### Open index.html in the browser
 
