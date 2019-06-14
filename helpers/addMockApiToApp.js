@@ -1,8 +1,15 @@
 // 根据 mock 配置，设置匹配请求 api
-const cwd = process.cwd();
-const mockData = require(cwd + '/' + mockFile);
+const chalk = require('chalk');
 
-function addMockApiToApp(app) {
+function addMockApiToApp(app, config) {
+  const cwd = process.cwd();
+  let mockData;
+  try {
+    mockData = require(cwd + '/' + config);
+  } catch (error) {
+    console.log(chalk.red('\n mockjs-server error. require config file error: \n'), error);
+    return;
+  }
   for (const item in mockData) {
     let api = item;
     if (item.split(' ').length > 1) {

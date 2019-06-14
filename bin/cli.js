@@ -1,25 +1,28 @@
 #!/usr/bin/env node
-
 const express = require('express');
 const bodyParser = require('body-parser');
+const chalk = require('chalk');
 const addMockApiToApp = require('../helpers/addMockApiToApp');
+require('../helpers/outCommander');
 
 const METHODS = ['PUT', 'GET', 'POST', 'DELETE', 'OPTIONS'];
 const app = express();
 let port = '8888';
-let mockFile = 'mock.config.js';
+let config = 'mock.config.js';
 
 process.argv.forEach(val => {
   switch (true) {
     // 配置 port
+    case val.indexOf('-p') === 0:
     case val.indexOf('--port') === 0:
       port = val.split('=')[1];
       port = port.trim();
       break;
     // 配置 mock 的配置文件
-    case val.indexOf('--mock') === 0:
-      mockFile = val.split('=')[1];
-      mockFile = mockFile.trim();
+    case val.indexOf('-c') === 0:
+    case val.indexOf('--config') === 0:
+      config = val.split('=')[1];
+      config = config.trim();
       break;
     default:
       break;
@@ -41,8 +44,15 @@ app.use(function (req, res, next) {
   next();
 })
 
-addMockApiToApp(app);
+addMockApiToApp(app, config);
+
+app.use('/*', function (req, res) {
+  res.json({
+    code: 404,
+    message: 'not find'
+  })
+})
 
 app.listen(port);
 
-console.log('run on localhost:' + port);
+console.log('\nrun on ' + chalk.blue('http://localhost:' + port) + '\n');
