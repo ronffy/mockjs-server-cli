@@ -7,10 +7,31 @@ An express server that relies on mockjs to simulate the CLI of interface data
 npm install mockjs-server-cli
 `
 
-## Commands
+## Usage
 
-`
+You can add mock.config.js to the project root directory  
+
+project-root  
+```
++ |- mock.config.js
+```
+
+Running commands  
+`shell
 mockjs-server
+`
+
+You can also place mock.config.js somewhere else, or change it to another name.  
+
+project-root  
+```
++ |- /config
+    |- mock.config.js
+```
+
+Running commands  
+`
+mockjs-server --config=config/mock.config.js
 `
 
 ### options
