@@ -1,0 +1,21 @@
+{
+  "name": "mockjs-server-exemple",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "mock": "mockjs-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ronffy/mockjs-server-cli/exemple"
+  },
+  "author": "ronffy",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/mockjs": "^1.0.2",
+    "mockjs": "^1.0.1-beta3",
+    "mockjs-server-cli": "^1.0.0"
+  }
+}
