@@ -25,10 +25,12 @@ function addMockApiToApp(app, config) {
         if (!getData) {
           return res.json({})
         }
-
+        
         const result = getData({
-          body: req.body,
-          query: req.query,
+          params: {
+            ...req.query,
+            ...req.body
+          }
         });
 
         // 支持 promise 形式，满足延迟返回结果

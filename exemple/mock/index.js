@@ -13,11 +13,11 @@ function getUsers(count = 10) {
 }
 
 module.exports = {
-  async ['/api/users']({ query }) {
+  async ['/api/users']({ params }) {
     await delay(getRandomTimeout()); // 随机延迟
     let count = 10;
-    if (query && query.count) {
-      count = query.count;
+    if (params && params.count) {
+      count = params.count;
     }
     return getUsers(count);
   },
