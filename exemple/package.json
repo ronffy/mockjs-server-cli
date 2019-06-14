@@ -16,6 +16,6 @@
   "devDependencies": {
     "@types/mockjs": "^1.0.2",
     "mockjs": "^1.0.1-beta3",
-    "mockjs-server-cli": "^1.0.0"
+    "mockjs-server-cli": "^1.1.4"
   }
 }
