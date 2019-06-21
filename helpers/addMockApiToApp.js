@@ -1,7 +1,8 @@
 // 根据 mock 配置，设置匹配请求 api
 const chalk = require('chalk');
+const random = require('lodash/random');
 
-function addMockApiToApp(app, config) {
+function addMockApiToApp(app, config, delay) {
   const cwd = process.cwd();
   let mockData;
   try {
@@ -22,31 +23,38 @@ function addMockApiToApp(app, config) {
         const uppMethod = method.toUpperCase();
         const getData = mockData[lowMethod + ' ' + api] || mockData[uppMethod + ' ' + api] || (uppMethod === 'GET' && mockData[api]);
         
-        if (!getData) {
-          return res.json({})
-        }
-        
-        const result = getData({
-          params: {
-            ...req.query,
-            ...req.body
+        if (delay && delay.length) {
+          let timeout;
+          if (delay.length === 2) {
+            const [min, max] = delay;
+            timeout = random(min, max);
+          } else {
+            timeout = toNumber(delay[0])
           }
-        });
-
-        // 支持 promise 形式，满足延迟返回结果
-        if (typeof result === 'object' && typeof result.then === 'function') {
-          result.then(data => {
-            res.json(data)
-          })
+          setTimeout(() => {
+            sendData(getData, req, res);
+          }, timeout || 0);
         } else {
-          res.json(result);
+          sendData(getData, req, res);
         }
       } catch (error) {
-        console.log(error, req);
+        console.log(chalk.red('send data error: \n'), error);
         next()
       }
     })
   }
+}
+
+function sendData(data, req, res) {
+  if (!data) {
+    return res.json({})
+  }
+
+  if (typeof data === 'function') {
+    return data(req, res);
+  }
+
+  res.end(JSON.stringify(data));
 }
 
 module.exports = addMockApiToApp;

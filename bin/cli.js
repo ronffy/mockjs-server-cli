@@ -3,31 +3,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const chalk = require('chalk');
 const addMockApiToApp = require('../helpers/addMockApiToApp');
+const getArgv = require('../helpers/getArgv');
 require('../helpers/outCommander');
 
 const METHODS = ['PUT', 'GET', 'POST', 'DELETE', 'OPTIONS'];
 const app = express();
-let port = '8888';
-let config = './mock.config.js';
-
-process.argv.forEach(val => {
-  switch (true) {
-    // 配置 port
-    case val.indexOf('-p') === 0:
-    case val.indexOf('--port') === 0:
-      port = val.split('=')[1];
-      port = port.trim();
-      break;
-    // 配置 mock 的配置文件
-    case val.indexOf('-c') === 0:
-    case val.indexOf('--config') === 0:
-      config = val.split('=')[1];
-      config = config.trim();
-      break;
-    default:
-      break;
-  }
-});
+const { port, config, delay} = getArgv();
 
 // 处理正确解析body
 app.use(bodyParser.urlencoded({
@@ -44,12 +25,12 @@ app.use(function (req, res, next) {
   next();
 })
 
-addMockApiToApp(app, config);
+addMockApiToApp(app, config, delay);
 
 app.use('/*', function (req, res) {
   res.json({
     code: 404,
-    message: 'not find'
+    message: 'NOT FIND'
   })
 })
 

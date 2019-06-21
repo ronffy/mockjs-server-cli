@@ -13,6 +13,8 @@ npm install mockjs-server-cli
 
 ## Usage
 
+### mode1
+
 You can add mock.config.js to the project root directory  
 
 project-root  
@@ -24,6 +26,8 @@ Running commands
 ```
 mockjs-server
 ```
+
+### mode2
 
 You can also place mock.config.js somewhere else, or change it to another name.  
 
@@ -41,4 +45,5 @@ mockjs-server --config=config/mock.config.js
 ### options
 
 - `-p, --port`(default: `8888`) - server port
-- `--config`(default: `${cwd}/mock.config.js`) - path to the mock config file
+- `-c, --config`(default: `${cwd}/mock.config.js`) - path to the mock config file
+- `-d, --delay` -  simulate http delay
