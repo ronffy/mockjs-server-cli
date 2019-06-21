@@ -1,7 +1,8 @@
-const Mock = require('mockjs');
+const { defaultResult, Mock } = require('./_common')
 
 function getUsers(count = 10) {
   return Mock.mock({
+    ...defaultResult,
     [`data|${count}`]: [
       {
         'id|+1': 1,
@@ -9,29 +10,18 @@ function getUsers(count = 10) {
         'avatar': '@image("100x50", "@name")'
       }
     ]
-  }).data;
+  });
 }
 
 module.exports = {
-  async ['/api/users']({ params }) {
-    await delay(getRandomTimeout()); // 随机延迟
+  ['/api/users'](req, res) {
+    const query = req.query;
     let count = 10;
-    if (params && params.count) {
-      count = params.count;
+    if (query && query.count) {
+      count = query.count;
     }
-    return getUsers(count);
-  },
-}
-
-
-function getRandomTimeout(min = 100, max = 1000) {
-  return Math.ceil((Math.random() || 0.1) * (max / min)) * min;
-}
-
-function delay(timeout) {
-  return new Promise(res => {
     setTimeout(() => {
-      res()
-    }, timeout);
-  })
+      res.json(getUsers(count))
+    }, 400);
+  },
 }
