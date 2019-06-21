@@ -7,7 +7,10 @@ fetch(`${preApi}/api/users?count=10`)
     let lis = ''
     const tpl = `<li data-id={id}><img src="{avatar}" /><span>{name}</span></li>`;
     
-    data.forEach(({ id, name, avatar }) => {
+    if (data.code !== 0 || !data.data) {
+      return;
+    }
+    data.data.forEach(({ id, name, avatar }) => {
       lis += strTemplate(tpl, {
         id,
         name,
