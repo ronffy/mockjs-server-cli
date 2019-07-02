@@ -6,6 +6,7 @@ const mockApiToApp = require('../helpers/mockApiToApp');
 const getArgv = require('../helpers/getArgv');
 require('../helpers/outCommander');
 
+const cwd = process.cwd();
 const METHODS = ['PUT', 'GET', 'POST', 'DELETE', 'OPTIONS'];
 const app = express();
 const { port, config, delay} = getArgv();
@@ -25,7 +26,14 @@ app.use(function (req, res, next) {
   next();
 })
 
-mockApiToApp(app, config, delay);
+let mockData;
+try {
+  mockData = require(cwd + '/' + config);
+  mockApiToApp(app, mockData, delay);
+} catch (error) {
+  console.log(chalk.red('\nRequire config file error.\n'), error);
+}
+
 
 app.use('/*', function (req, res) {
   res.json({

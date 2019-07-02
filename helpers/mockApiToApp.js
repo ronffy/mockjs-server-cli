@@ -2,13 +2,8 @@
 const chalk = require('chalk');
 const random = require('lodash/random');
 
-module.exports = function mockApiToApp(app, configPath, delay) {
-  const cwd = process.cwd();
-  let mockData;
-  try {
-    mockData = require(cwd + '/' + configPath);
-  } catch (error) {
-    console.log(chalk.red('\nRequire config file error.\n'), error);
+module.exports = function mockApiToApp(app, mockData, delay) {
+  if (!mockData) {
     return;
   }
   for (const item in mockData) {
