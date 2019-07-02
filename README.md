@@ -45,5 +45,5 @@ mockjs-server --config=config/mock.config.js
 ### options
 
 - `-p, --port`(default: `8888`) - server port
-- `-c, --config`(default: `${cwd}/mock.config.js`) - path to the mock config file
-- `-d, --delay` -  simulate http delay
+- `--config`(default: `${cwd}/mock.config.js`) - path to the mock config file
+- `--delay` -  simulate http delay
