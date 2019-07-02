@@ -2,7 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const chalk = require('chalk');
-const addMockApiToApp = require('../helpers/addMockApiToApp');
+const mockApiToApp = require('../helpers/mockApiToApp');
 const getArgv = require('../helpers/getArgv');
 require('../helpers/outCommander');
 
@@ -25,7 +25,7 @@ app.use(function (req, res, next) {
   next();
 })
 
-addMockApiToApp(app, config, delay);
+mockApiToApp(app, config, delay);
 
 app.use('/*', function (req, res) {
   res.json({

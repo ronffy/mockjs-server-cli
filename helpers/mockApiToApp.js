@@ -2,13 +2,13 @@
 const chalk = require('chalk');
 const random = require('lodash/random');
 
-function addMockApiToApp(app, config, delay) {
+module.exports = function mockApiToApp(app, configPath, delay) {
   const cwd = process.cwd();
   let mockData;
   try {
-    mockData = require(cwd + '/' + config);
+    mockData = require(cwd + '/' + configPath);
   } catch (error) {
-    console.log(chalk.red('\n mockjs-server error. require config file error: \n'), error);
+    console.log(chalk.red('\nRequire config file error.\n'), error);
     return;
   }
   for (const item in mockData) {
@@ -56,5 +56,3 @@ function sendData(data, req, res) {
 
   res.end(JSON.stringify(data));
 }
-
-module.exports = addMockApiToApp;
