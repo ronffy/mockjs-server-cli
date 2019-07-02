@@ -1,1 +1,6 @@
-require('./bin/cli');
+
+const mockApiToApp = require('./helpers/mockApiToApp');
+
+module.exports = {
+  mockApiToApp
+}
