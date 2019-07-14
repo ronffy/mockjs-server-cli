@@ -7,7 +7,7 @@ An express server that relies on mockjs to simulate the CLI of interface data
 
 ## Install
 
-```
+```shell
 npm install mockjs-server-cli
 ```
 
@@ -23,7 +23,7 @@ project-root
 ```
 
 Running commands  
-```
+```shell
 mockjs-server
 ```
 
@@ -38,8 +38,8 @@ project-root
 ```
 
 Running commands  
-```
-mockjs-server --config=config/mock.config.js
+```shell
+mockjs-server --port=8888 --config=config/mock.config.js
 ```
 
 ### options

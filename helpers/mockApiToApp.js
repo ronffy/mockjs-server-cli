@@ -1,4 +1,6 @@
-// 根据 mock 配置，设置匹配请求 api
+/**
+ * 根据 mock 配置，设置匹配请求 api
+ */
 const chalk = require('chalk');
 const random = require('lodash/random');
 
@@ -17,7 +19,7 @@ module.exports = function mockApiToApp(app, mockData, delay) {
         const lowMethod = method.toLowerCase();
         const uppMethod = method.toUpperCase();
         const getData = mockData[lowMethod + ' ' + api] || mockData[uppMethod + ' ' + api] || (uppMethod === 'GET' && mockData[api]);
-        
+
         if (delay && delay.length) {
           let timeout;
           if (delay.length === 2) {
@@ -33,7 +35,7 @@ module.exports = function mockApiToApp(app, mockData, delay) {
           sendData(getData, req, res);
         }
       } catch (error) {
-        console.log(chalk.red('send data error: \n'), error);
+        console.log(chalk.red('Send data error: \n'), error);
         next()
       }
     })
